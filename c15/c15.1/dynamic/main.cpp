@@ -1,5 +1,6 @@
 #include <iostream>
 #include <array>
+#include <cassert>
 
 #define CONCAT2(x, y) x##y
 #define CHAR_CONST_PTR(x) struct CONCAT2(_, x)      \
@@ -155,6 +156,10 @@ namespace cormen
         {
             return subsequence.rend();
         }
+        operator const_iterator() // no explicit
+        {
+            return subsequence.begin();
+        }
     };
 }
 
@@ -168,9 +173,17 @@ int main()
 
     using namespace cormen;
 
-    ch15_4_subsequence s (seq2, seq1);
-    std::cout << s.size() << std::endl;
-    std::cout << std::boolalpha << "is empty? " << s.empty() << std::endl;
+    ch15_4_subsequence s (seq1, seq2);
+
+    assert(s.size() == 4);
+    assert(!s.empty());
+    assert(s[0] == 'A');
+    assert(s[1] == 'B');
+    assert(s[2] == 'F');
+    assert(s[3] == 'B');
+
+    std::cout << s << std::endl;
+
     for (auto elem : s)
     {
         std::cout << elem;
@@ -183,6 +196,6 @@ int main()
         std::cout << *riter;
         riter++;
     }
-    
+    std::cout << std::endl;
     return 0;
 }
