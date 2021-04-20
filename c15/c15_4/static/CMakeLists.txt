@@ -12,7 +12,4 @@ set(CMAKE_CXX_STANDARD 20)
 find_package(Boost 1.65)
 include_directories(${Boost_INCLUDE_DIRS})
 
-if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-    #target_link_libraries(ch15_4 -stdlib=libc++)
-endif()
 add_executable(ch15_4 main.cpp )
