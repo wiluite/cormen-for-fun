@@ -1,6 +1,7 @@
 #include <iostream>
 #include <array>
 #include <cassert>
+#include <cstring> // strcmp()
 
 #define CONCAT2(x, y) x##y
 #define CHAR_CONST_PTR(x) struct CONCAT2(_, x)      \
@@ -181,7 +182,9 @@ int main()
     assert(s[1] == 'B');
     assert(s[2] == 'F');
     assert(s[3] == 'B');
+    assert(strcmp(s, "ABFB") == 0);
 
+    // operator char const *
     std::cout << s << std::endl;
 
     for (auto elem : s)
